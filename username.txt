@@ -1,0 +1,7 @@
+Michael_Lee
+python -u "/home/coderlee/projects/google-certs/password/password_gen.py"
+Najma.Ale
+Adam.Lee
+crazy
+Najma.Ale
+Najma.Ali
