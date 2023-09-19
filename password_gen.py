@@ -19,20 +19,40 @@ def mail():
     while True:
         email = input("Please input your preferred e-mail: ").lower()
         if any(email.endswith(tld) for tld in mail_tld):  # 'if any' refers to having any part of the input email entered. 'endswith()' allows for the list of proper tld's to be used at the end of the input
-            print("welcome {}! at {} you are now in the system.".format(f_name, email))
+            print(f"welcome {f_name}! at {email} you are now in the system.")
             with open("email.txt", "a") as emailfile:
                 emailfile.write(f"{f_name}, {l_name}, {email}\n")
             break
         else:
             print("please enter a valid email adddress")
 
-mail()
 
-# def username():
-#     new_user = input("Please create a new username for your log-in: ")
-#     with open("username.txt", "a") as user:
-#         user.write(new_user + "\n")
-#     return new_user
+class UsersInformation:
+    def __init__(self):
+        self.f_name = None
+        self.l_name = None
+
+
+    def first_last_name(self):
+        with open("email.txt", "r") as emailfile:
+            lines = emailfile.readlines()
+            if lines:
+                last_line = lines[-1].strip().split(",") # this line will read the last line in the txt.file
+                if len(last_line) == 3:  # will check if the list has three criterias (i.e. f_name, l_name, email)
+                    self.f_name, self.l_name, _ = last_line  # This takes only the first two options(i.e. f_name, l_name) from the email.txt file
+
+
+    def username():
+        choice = input("Would you like to use your first and last name as a default username? (y/n): ").lower()
+        if choice == "y" or "yes":
+            with open("email.txt", "r") as emailfile:
+                first_last = emailfile.readlines()
+                for names in first_last:
+        if choice == "n" or "no":
+            new_user = input("Please create a new username for your log-in: ")
+            with open("username.txt", "a") as user:
+                user.write(new_user + "\n")
+            return new_user
 
 # time.sleep(1)
 
@@ -114,5 +134,6 @@ mail()
 # def associated(identity, username):
 #     shared = []
 
-# username()
+mail()
+username()
 # identity()
